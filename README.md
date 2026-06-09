@@ -60,32 +60,6 @@ Dự án dùng dataset public từ NAB:
 
 Nếu không có Internet, script sẽ dùng file sample có sẵn trong `data/`.
 
-## Cài đặt
-
-Yêu cầu Python 3.10+.
-
-```bash
-python -m venv .venv
-```
-
-Windows PowerShell:
-
-```powershell
-.\.venv\Scripts\Activate.ps1
-```
-
-macOS/Linux:
-
-```bash
-source .venv/bin/activate
-```
-
-Cài thư viện:
-
-```bash
-pip install -r requirements.txt
-```
-
 ## Chạy pipeline
 
 Tải dữ liệu hoặc dùng fallback sample:
@@ -181,18 +155,6 @@ Input là danh sách telemetry gần nhất:
 
 Output gồm `anomaly_score`, `threshold_used`, `is_anomaly`, `event_type`, `severity`, `decision` và thông tin kiểm tra API.
 
-## Kết quả mẫu
-
-| Chỉ số | Isolation Forest | Autoencoder demo |
-|---|---:|---:|
-| Precision | 0.5541 | 0.3333 |
-| Recall | 1.0000 | 0.5610 |
-| F1-score | 0.7130 | 0.4182 |
-| Threshold | 0.4469 | MSE 0.125136 |
-| Test rows | 350 | 326 |
-
-Xem thêm trong [reports/run_results.md](reports/run_results.md).
-
 ## Kiểm tra hoàn thành
 
 - Notebook chạy hết không lỗi.
@@ -203,8 +165,4 @@ Xem thêm trong [reports/run_results.md](reports/run_results.md).
 - API `/health` trả `model_loaded: true`.
 - API `/detect-anomaly` trả đủ `anomaly_score`, `event_type`, `severity` và `decision`.
 
-## Ghi chú kỹ thuật
-
-- Threshold được lấy từ phân bố điểm anomaly trên train set để tránh data leakage.
-- `anomaly_score` chưa phải quyết định cuối cùng; hệ thống còn ánh xạ sang event, severity và decision.
-- API dùng model bundle `models/anomaly_model_bundle_iforest_v2.joblib`; nếu không có, code có fallback sang model legacy.
+j
